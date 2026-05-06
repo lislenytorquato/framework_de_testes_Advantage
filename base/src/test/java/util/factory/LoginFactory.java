@@ -12,15 +12,10 @@ public class LoginFactory {
 
     public void createLogin(){
        Faker faker = new Faker();
-        login.setEmail(faker.internet().emailAddress());
-        login.setLoginPassword(faker.text().text(Text.TextSymbolsBuilder.builder()
-                .len(8)
-                .with(EN_UPPERCASE, 2)
-                .with(DIGITS, 3).build()));
-        login.setLoginUser(faker.text().text(Text.TextSymbolsBuilder.builder()
-                .len(8)
-                .with(EN_UPPERCASE, 1)
-                .with(DIGITS, 2).build()));
+        login.setEmail(faker.internet().emailAddress()+"__TEST");
+        login.setLoginPassword(createText(faker,8,2,3)+"__TEST");
+        login.setLoginUser(createText(faker,8,1,2)+"__TEST");
     }
+
 
 }

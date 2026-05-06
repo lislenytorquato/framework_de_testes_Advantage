@@ -9,17 +9,11 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
-import util.factory.LoginFactory;
 
 public class LoginSteps {
 
     private RequestSpecification request;
     private Response response;
-    private LoginFactory loginFactory;
-    @Before
-    void setup(){
-        loginFactory.createLogin();
-    }
 
     @Given("Eu quero acessar a url {string}")
     public void EuQueroAcessarAUrl(String url){
