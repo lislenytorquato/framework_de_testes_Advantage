@@ -5,7 +5,7 @@ import util.enums.Country;
 
 import java.util.Objects;
 
-public class Account {
+public class Register {
 
         private String accountType;
         private String address;
@@ -22,7 +22,7 @@ public class Account {
         private String stateProvince;
         private String zipcode;
 
-    public Account(String accountType, String address, boolean allowOffersPromotion, boolean aobUser, String cityName, String country, String email, String firstName, String lastName, String loginName, String password, String phoneNumber, String stateProvince, String zipcode) {
+    public Register(String accountType, String address, boolean allowOffersPromotion, boolean aobUser, String cityName, String country, String email, String firstName, String lastName, String loginName, String password, String phoneNumber, String stateProvince, String zipcode) {
         this.accountType = accountType;
         this.address = address;
         this.allowOffersPromotion = allowOffersPromotion;
@@ -42,8 +42,8 @@ public class Account {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Account account = (Account) o;
-        return allowOffersPromotion == account.allowOffersPromotion && aobUser == account.aobUser && Objects.equals(accountType, account.accountType) && Objects.equals(address, account.address) && Objects.equals(cityName, account.cityName) && Objects.equals(country, account.country) && Objects.equals(email, account.email) && Objects.equals(firstName, account.firstName) && Objects.equals(lastName, account.lastName) && Objects.equals(loginName, account.loginName) && Objects.equals(password, account.password) && Objects.equals(phoneNumber, account.phoneNumber) && Objects.equals(stateProvince, account.stateProvince) && Objects.equals(zipcode, account.zipcode);
+        Register register = (Register) o;
+        return allowOffersPromotion == register.allowOffersPromotion && aobUser == register.aobUser && Objects.equals(accountType, register.accountType) && Objects.equals(address, register.address) && Objects.equals(cityName, register.cityName) && Objects.equals(country, register.country) && Objects.equals(email, register.email) && Objects.equals(firstName, register.firstName) && Objects.equals(lastName, register.lastName) && Objects.equals(loginName, register.loginName) && Objects.equals(password, register.password) && Objects.equals(phoneNumber, register.phoneNumber) && Objects.equals(stateProvince, register.stateProvince) && Objects.equals(zipcode, register.zipcode);
     }
 
     @Override

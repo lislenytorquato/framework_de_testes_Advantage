@@ -1,14 +1,24 @@
 package database;
 
+import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
-import util.factory.LoginFactory;
+import org.junit.jupiter.api.Test;
+import util.factory.RegisterFactory;
+import util.model.Register;
 
 public class Database {
 
+    private static Register register;
+
     @BeforeAll
     static void setup(){
-        LoginFactory loginFactory = new LoginFactory();
-        loginFactory.createLogin();
+        RegisterFactory registerFactory = new RegisterFactory();
+        register = registerFactory.createUserAccount();
     }
-    private void createAccount
+    @Test
+    void createAccount(){
+        RestAssured.given()
+                .baseUri("https://www.advantageonlineshopping.com/api/docs/")
+                .pa
+    }
 }
