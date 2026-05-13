@@ -8,17 +8,23 @@ import util.model.Register;
 
 public class Database {
 
-    private static Register register;
+    private static Register registerObrigatoryFields;
+    private static Register registerAllFields;
 
     @BeforeAll
     static void setup(){
         RegisterFactory registerFactory = new RegisterFactory();
-        register = registerFactory.createUserAccount();
+        registerObrigatoryFields = registerFactory.createUserAccountOBrigatoryFields();
     }
     @Test
     void createAccount(){
         RestAssured.given()
                 .baseUri("https://www.advantageonlineshopping.com/api/docs/")
-                .pa
+                .basePath("/accountrest/api/v1/register")
+                .body(registerObrigatoryFields)
+                .when()
+                .post()
+                .then()
+                .statusCode(200);
     }
 }

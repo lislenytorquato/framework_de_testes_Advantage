@@ -22,6 +22,12 @@ public class Register {
         private String stateProvince;
         private String zipcode;
 
+    public Register(String accountType,String email, String loginName, String password) {
+        this.accountType = accountType;
+        this.email = email;
+        this.loginName = loginName;
+        this.password = password;
+    }
     public Register(String accountType, String address, boolean allowOffersPromotion, boolean aobUser, String cityName, String country, String email, String firstName, String lastName, String loginName, String password, String phoneNumber, String stateProvince, String zipcode) {
         this.accountType = accountType;
         this.address = address;
