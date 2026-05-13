@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - test/tst-06-5-25-teste-de-api
   pull_request:
     branches:
       - main
