@@ -18,7 +18,9 @@ jobs:
           java-version: '17'
 
       - name: Build and test
-      - mvn clean package base
+        uses: s4u/setup-maven-action@< 3.9.14 >
+      - mvn -pl base test
+
 
 
 
