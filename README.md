@@ -1,31 +1,38 @@
-## Framework de Testes
-Este é um projeto de 4 testes diferentes:
-api, web, mobile, e performance. 
-Onde todos compartilham a mesma massa de dados,
-exceto performance. E o escopo escolhido para testes é o login.
-Do site Advantage Shopping Online Demo: 
-* [Advantage Shopping WEB](https://advantageonlineshopping.com/#/)
-* [Advantage Shopping API](https://www.advantageonlineshopping.com/api/docs/)
- 
+# Framework de Testes - Advantage Shopping
 
-## Ideia Inicial:
+Este projeto tem como foco testes automatizados para o site `Advantage Shopping Online Demo`, com foco no escopo de login.
 
-### Arquitetura e Tech Stack
+Links do ambiente de testes:
+* [`Advantage Shopping API`](https://www.advantageonlineshopping.com/api/docs/)
+* [`Advantage Shopping WEB`](https://advantageonlineshopping.com/#/)
 
-* Front-end Web: Cypress 
-* Back-end (API): Java + RestAssured + JUnit 5.
-* Mobile: Appium (Java) + Selenium Grid.
-* Mocks de Serviços: WireMock (para simular gateways de pagamento).
-* Massa de Dados: Scripting em Python (Pandas/Faker) para gerar arquivos CSV/SQL.
-* Performance: JMeter (testes de estresse nos endpoints).
-* BDD: Cucumber (integrado ao Java e Cypress).
-* CI/CD: Jenkins (Pipeline-as-Code).
+## Arquitetura e Tecnologias
 
-### TESTE DE API COM REST ASSURED E CUCUMBER
+O projeto atual implementa testes de API com as seguintes ferramentas e tecnologias:
 
-#### FERRAMENTAS
-* Maven
-* Rest Assured
-* Cucumber
-* Java 24
-* Pipeline github actions 
+* Linguagem: `Java 17`
+* Build Tool: `Gradle`
+* Framework de Testes: `JUnit 5`
+* Testes de API: `Rest Assured`
+* BDD: `Cucumber`
+* Geracao de Massa de Dados: `Datafaker`
+* Integracao Continua (CI): `GitHub Actions`
+
+## Como Executar os Testes
+
+Para rodar os testes localmente, voce precisa ter o `Java 17` instalado na sua maquina. 
+
+A execucao e feita atraves do `Gradle Wrapper` nativo no projeto:
+
+No Linux ou macOS:
+```bash
+./gradlew test
+```
+
+No Windows:
+```cmd
+gradlew.bat test
+```
+
+Apos a execucao, o relatorio HTML do Cucumber ficara disponivel em:
+`build/reports/cucumber/report.html`
