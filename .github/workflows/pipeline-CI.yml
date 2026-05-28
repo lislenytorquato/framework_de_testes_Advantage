@@ -13,6 +13,7 @@ jobs:
     with:
       command: './gradlew test --tests "database.Database.createAccount"'
   login:
+    needs: register
     uses: ./.github/workflows/setup.yml
     with:
       command: './gradlew test --tests "steps.RunCucumberTest"'
