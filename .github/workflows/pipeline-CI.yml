@@ -9,37 +9,13 @@ on:
 
 jobs:
   register:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: ./.github/workflows/setup.yml
         with:
-          distribution: 'zulu'
-          java-version: '17'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        run: chmod +x gradlew
-
-      - name: register
-        run: ./gradlew test --tests "database.Database.createAccount"
+          test-command: './gradlew test --tests "database.Database.createAccount"'
   login:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    needs: register
+    uses: ./.github/workflows/setup.yml
+    with:
+      test-command: './gradlew test --tests "steps.RunCucumberTest"'
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        run: chmod +x gradlew
-
-      - name: Login Feature
-        run: ./gradlew test --tests "steps.RunCucumberTest"
 
