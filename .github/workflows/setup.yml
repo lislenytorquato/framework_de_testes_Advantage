@@ -1,6 +1,10 @@
 name: Workflow para SetUp
 on:
   workflow_call:
+    inputs:
+      command:
+        required: true
+        type: string
 
 jobs:
   setup:
