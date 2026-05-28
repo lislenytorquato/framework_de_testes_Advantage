@@ -1,6 +1,5 @@
 package steps;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,13 +8,14 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import util.factory.LoginFactory;
 
 public class LoginSteps {
 
     private RequestSpecification request;
     private Response response;
+    private LoginFactory loginFactory;
 
     @Given("Eu quero acessar a url {string}")
     public void EuQueroAcessarAUrl(String url){
@@ -23,8 +23,9 @@ public class LoginSteps {
     }
     
     @And("Insiro username {string} e senha {string} corretos")
-    public void insiroUsernameESenhaCorretos(String username, String senha){
-        String payload = String.format("{\"email\": \"%s\", \"loginPassword\": \"%s\", \"loginUser\": \"%s\"}", "", senha, username);
+    public void insiroUsernameESenhaCorretos(){
+        String payload = String.format("{\"email\": \"%s\", \"loginPassword\": \"%s\", \"loginUser\": \"%s\"}", "",
+                loginFactory.returnLogin().getLoginPassword(), loginFactory.returnLogin().getLoginUser() );
         request.body(payload);
     }
     
