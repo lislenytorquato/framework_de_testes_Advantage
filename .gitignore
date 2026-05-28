@@ -9,3 +9,6 @@
 *.ipr
 build
 
+### Gradle ###
+.gradle
+

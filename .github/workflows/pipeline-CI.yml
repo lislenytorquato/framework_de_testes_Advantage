@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  register:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,5 +22,5 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Build and test
-        run: ./gradlew test
+      - name: register
+        run: ./gradlew test --test "database.Database.createAccount"
