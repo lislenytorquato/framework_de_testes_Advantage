@@ -23,3 +23,6 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+
+      - name: Rodar comando
+        run: ${{ inputs.command }}
