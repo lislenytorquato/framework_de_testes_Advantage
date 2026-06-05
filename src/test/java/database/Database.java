@@ -1,5 +1,7 @@
 package database;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -8,48 +10,41 @@ import org.junit.jupiter.api.Test;
 import util.factory.RegisterFactory;
 import util.model.Register;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class Database {
 
-    private static Register registerObrigatoryFields;
-    private static Register registerAllFields;
+    private static Register register;
     private static Response response;
 
     @BeforeAll
-    static void setup(){
+    static void setup() throws IOException {
+        String payload = Files.readString(Paths.get("src/test/resources/payload/conta-maria-silva.json"));
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        JsonNode jsonNode = mapper.readTree(payload);
+
         RegisterFactory registerFactory = new RegisterFactory();
-        registerObrigatoryFields = registerFactory.createUserAccountOBrigatoryFields();
+        register = registerFactory.createUserAccount(jsonNode.get("email").asText(), jsonNode.get("loginName").asText(), jsonNode.get("password").asText());
     }
     
     @Test
     void createAccount(){
       response = RestAssured.given()
-                .baseUri("https://www.advantageonlineshopping.com/accountservice")
-              .basePath("accountrest/api/v1/")
+                .baseUri("https://www.advantageonlineshopping.com")
+              .basePath("/accountservice")
                 .contentType(ContentType.JSON)
-                .body(registerObrigatoryFields)
+                .accept(ContentType.JSON)
+                .body(register)
                 .when()
-                .post("register")
+                .post("/accountrest/api/v1/register")
                 .then()
+              .log().all()
                 .statusCode(200)
                 .extract()
                 .response();
-    }
-
-    @Test
-    void deleteAccount(){
-        String token = response.jsonPath().getString("token");
-        String accountId = response.jsonPath().getString("accountType");
-
-        RestAssured.given()
-                .baseUri("https://www.advantageonlineshopping.com")
-                .basePath("/accountrest/api/v1/register")
-                .contentType(ContentType.JSON)
-                .auth().oauth2(token)
-                .body(accountId)
-                .when()
-                .post()
-                .then()
-                .statusCode(200);
-
     }
 }
