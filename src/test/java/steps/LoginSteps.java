@@ -17,26 +17,31 @@ public class LoginSteps {
     private RequestSpecification request;
     private Response response;
     private LoginFactory loginFactory = new LoginFactory();
-    private String URL = "";
 
     @Given("Eu quero acessar a url {string}")
     public void EuQueroAcessarAUrl(String url){
          request = RestAssured.given().baseUri(url).contentType(ContentType.JSON);
     }
     
-    @And("Insiro email {string} username {string} e senha {string} corretos")
-    public void insiroUsernameESenhaCorretos(String email, String username, String senha){
+    @And("Insiro email {string} username {string} e senha {string}")
+    public void insiroEmailEUsernameESenha(String email, String username, String senha){
         Login login = loginFactory.createLogin(email, username, senha);
         request.body(login);
     }
     
     @When("Eu fizer login")
     public void EuFizerLogin(){
-        response = request.post().then().log().all().extract().response();
+        response = request.post();
     }
     
-    @Then("Consigo fazer login e o status code é {int}")
-    public void consigoFazerLoginEOStatusCodeÉ(int statusCode){
+    @Then("Consigo fazer login")
+    @Then("Não consigo fazer login")
+    public void consigoFazerLogin(){
+        response.then().log().all().extract().response();
+    }
+
+    @And("O status code é {int}")
+    public void eOStatusCodeÉ(int statusCode){
         Assertions.assertEquals(statusCode, response.statusCode());
     }
 }

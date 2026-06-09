@@ -8,6 +8,10 @@ on:
       - main
 
 jobs:
+ register:
+   uses: ./.github/workflows/setup.yml
+   with:
+     command: "./gradlew test --tests 'database.Database'"
  login:
     uses: ./.github/workflows/setup.yml
     with:

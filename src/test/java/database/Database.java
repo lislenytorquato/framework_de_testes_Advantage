@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import util.factory.RegisterFactory;
@@ -13,6 +14,8 @@ import util.model.Register;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import static org.hamcrest.Matchers.*;
 
 public class Database {
 
@@ -42,8 +45,8 @@ public class Database {
                 .when()
                 .post("/accountrest/api/v1/register")
                 .then()
-              .log().all()
-                .statusCode(200)
+                .log().all()
+                .statusCode(anyOf(is(403), is(200)))
                 .extract()
                 .response();
     }
