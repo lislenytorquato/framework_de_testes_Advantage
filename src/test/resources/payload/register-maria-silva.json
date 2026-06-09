@@ -1,0 +1,16 @@
+{
+  "accountType": "USER",
+  "address": "string",
+  "allowOffersPromotion": true,
+  "aobUser": true,
+  "cityName": "string",
+  "country": "AUSTRALIA_AU",
+  "email": "123TEST_@hotmail.com",
+  "firstName": "string",
+  "lastName": "string",
+  "loginName": "maria_silva",
+  "password": "mS123TEST",
+  "phoneNumber": "string",
+  "stateProvince": "string",
+  "zipcode": "string"
+}

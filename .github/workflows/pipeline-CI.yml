@@ -1,0 +1,19 @@
+name: CI Pipeline
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+ register:
+   uses: ./.github/workflows/setup.yml
+   with:
+     command: "./gradlew test --tests 'database.Database'"
+ login:
+    uses: ./.github/workflows/setup.yml
+    with:
+      command: "./gradlew test --tests 'steps.RunCucumberTest'"
+

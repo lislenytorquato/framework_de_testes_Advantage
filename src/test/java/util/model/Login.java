@@ -6,6 +6,14 @@ public class Login {
     private String email;
     private String loginPassword;
     private String loginUser;
+    
+    public Login() {}
+    
+    public Login(String email, String loginPassword, String loginUser) {
+        this.email = email;
+        this.loginPassword = loginPassword;
+        this.loginUser = loginUser;
+    }
 
     public String getEmail() {
         return email;
